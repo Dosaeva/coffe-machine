@@ -9,6 +9,7 @@
 }
 
 .coffee-item {
+  max-height: 75px;
   background: rgba(0, 0, 0, 0.7);
   margin: 10px 0;
   border-radius: calc(75px / 2);
@@ -39,4 +40,20 @@
   background: lightgreen;
   border: 3px solid darkgreen;
   padding: 10px;
+  margin-bottom: 30px;
+}
+
+.coffee-cup img {
+  width: 100%;
+}
+
+.atm img {
+  width: 100%;
+}
+
+.change-box {
+  background: grey;
+  border: 3px solid black;
+  height: 100px;
+  margin-top: 15px;
 }
