@@ -82,3 +82,45 @@ function changeDisplayText(text) {
   //displayText.innerText = "<span>"+text+"</span>";
   displayText.innerHTML = "<span>"+text+"</span>";
 }
+
+//---------------------------Drag 'n' Drop------------------------------
+
+let bills = document.querySelectorAll(".wallet img");
+
+for(let i = 0; i < bills.length; i++) {
+  bills[i].onmousedown = takeMoney; //Нажатие мышкой на купюру
+  //bills[i].onmousedown = takeMoney; //Так не надо
+}
+
+function takeMoney(event) {
+  event.preventDefault();
+  
+  let bill = this;
+  let billCost = bill.getAttribute("cost");
+  //console.log(billCost);
+  
+  bill.style.position = "absolute";
+  bill.style.transform = "rotate(90deg)";
+  
+  let billCoords = bill.getBoundingClientRect();
+  let billWidth = billCoords.width;
+  let billHeight = billCoords.height;
+  //console.log(event);
+  //console.log(event.clientX, event.clientY);
+  
+  bill.style.top = event.clientY - billWidth/2 + "px";
+  bill.style.left = event.clientX - billHeight/2 + "px";
+  
+  window.onmousemove = (event) => {
+    //console.log(event.clientX, event.clientY);
+    bill.style.top = event.clientY - billWidth/2 + "px";
+    bill.style.left = event.clientX - billHeight/2 + "px";
+  };
+  
+  bill.onmouseup = dropMoney;
+}
+
+function dropMoney() {
+  window.onmousemove = null;
+}
+
