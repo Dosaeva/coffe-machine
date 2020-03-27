@@ -7,6 +7,23 @@ let coffeeCup = document.querySelector(".coffee-cup img");
 
 let coffeeStatus = "waiting"; //"cooking" "ready"
 
+coffeeCup.onclick = takeCoffee; //первый вариант
+
+/*coffeeCup.addEventListener("click", takeCoffee, par1, par2) //второй вариант
+coffeeCup.addEventListener("click", takeCoffee, par1, par2)
+coffeeCup.addEventListener("click", takeCoffee, par1, par2)
+coffeeCup.addEventListener("click", takeCoffee, par1, par2)
+*/
+//coffeeCup.addEventListener("click", buyCoffee, "Американо", 21)
+
+/*coffeeCup.addEventListener("click", () => {
+  takeCoffee
+}*/
+
+/*coffeeCup.onclick = function() {
+  takeCoffee();
+}*/
+
 function buyCoffee(name, cost, elem) {
   if (coffeeStatus != "waiting") {
     return;
@@ -49,6 +66,16 @@ function cookCoffee(name, elem) {
       clearInterval(cookingInterval);
     }
   }, 100);
+}
+function takeCoffee() {
+  if (coffeeStatus != "ready") {
+    return;
+  }
+  coffeeStatus = "waiting";
+  coffeeCup.classList.add("d-none");
+  coffeeCup.style.cursor = "auto";
+  progressBar.style.width = "0%";
+  changeDisplayText("Выберите кофе");
 }
 
 function changeDisplayText(text) {
