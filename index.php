@@ -57,7 +57,7 @@
               <div class="atm">
                 <img src="img/bill_acc.png" alt="">
               </div>
-              <button class="btn btn-primary btn-block mt-2">Сдача</button>
+              <button class="btn btn-primary btn-block mt-2 change">Сдача</button> <!--Комментарий-->
                <div class="change-box"></div>
             </div>
           </div>
