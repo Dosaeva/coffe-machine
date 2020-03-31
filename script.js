@@ -192,7 +192,37 @@ changeBtn.onclick = takeChange;
 
 function takeChange() {
   //alert("Сдача!");
-  tossCoin("10");
+  //tossCoin("10");
+  if (balance.value <= 0) {
+    changeBtn.onclick = takeChange;
+    return;
+  }
+  changeBtn.onclick = null;
+  if (balance.value - 10 >= 0) {
+    setTimeout(() => {
+      tossCoin("10");
+      balance.value -= 10;
+      return takeChange();
+    }, 300);
+  } else if (balance.value - 5 >= 0) {
+      setTimeout(() => {
+      tossCoin("5");
+      balance.value -= 5;
+      return takeChange();
+      }, 300);
+  } else if (balance.value - 2 >= 0) {
+      setTimeout(() => {
+      tossCoin("2");
+      balance.value -= 2;
+      return takeChange();
+    }, 300);
+  } else if (balance.value - 1 >= 0) {
+      setTimeout(() => {
+      tossCoin("1");
+      balance.value -= 1;
+      return takeChange();
+    }, 300);
+  }
 }
 
 function tossCoin(cost) {
@@ -207,13 +237,13 @@ function tossCoin(cost) {
       coinSrc = "img/10rub.png";
       break;
     case "5":
-      coinSrc = "img/5.png";
+      coinSrc = "img/5rub.png";
       break;
     case "2":
-      coinSrc = "img/2.png";
+      coinSrc = "img/2rub.png";
       break;
     case "1":
-      coinSrc = "img/1.png";
+      coinSrc = "img/1rub.png";
       break;
   }
   
@@ -229,7 +259,7 @@ function tossCoin(cost) {
   coin.style.cursor = "pointer";
   coin.style.display = "inline-block";
   coin.style.position = "absolute";
-  
+
   changeContainer.append(coin); //Прикрепить после внутри элемента
   /*changeContainer.prepend(coin); //Прикрепить до внутри элемента
   
@@ -242,6 +272,10 @@ function tossCoin(cost) {
   coin.style.left = Math.round(Math.random() * (changeContainerCoords.width - 53)) + "px";
   
   coin.onclick = () => coin.remove();
+  
+  let coinSound = new Audio("sound/coindrop.mp3");
+    //coindSound.src = "sound/coindrop.mp3"
+    coinSound.play();
   
 }
 
